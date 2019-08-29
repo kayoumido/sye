@@ -1,0 +1,39 @@
+# Ignore all generated files :
+*.[oa]
+*.cmd
+*.tmp*
+*.log
+*.ko
+*.mk
+*.builtin
+*.dtb
+*.su
+*.elf
+*.bin
+*.d
+
+# vim swap files
+.*.swp
+
+**/include/config/**
+
+# Backup files
+*~
+*.d
+
+# Hidden files
+#.*
+
+# Project files
+*.kdev4
+
+# Eclipse stuff
+*.launch
+#.metadata
+
+# except the followings:
+!.gitignore #Don't ignore the ignore file ;-)
+!.codecheck-problem-id
+
+
+
