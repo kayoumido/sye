@@ -1,0 +1,65 @@
+/dts-v1/;
+/ {
+ #address-cells = <1>;
+ #size-cells = <1>;
+ chosen { };
+ aliases { };
+};
+/ {
+ model = "SO3 Vexpress";
+ compatible = "arm,vexpress";
+ cpus@0 {
+  device_type = "cpu";
+  compatible = "arm,cortex-a15";
+  reg = <0 0>;
+ };
+ memory@80000000 {
+  device_type = "memory";
+  reg = <0x80000000 0x10000000>;
+ };
+ gic:interrupt-controller@2c001000 {
+  compatible = "intc,gic";
+  interrupt-controller;
+  #interrupt-cells = <1>;
+  reg = <0x2c001000 0x2000>;
+  status = "ok";
+ };
+ serial@1c090000 {
+  compatible = "serial,pl011";
+  reg = <0x1c090000 0x1000>;
+  interrupt-parent = <&gic>;
+  interrupts = <37>;
+  status = "ok";
+ };
+ periodic-timer@1c110000 {
+  compatible = "sp804,periodic-timer";
+  reg = <0x1c110000 0x1000>;
+  interrupt-parent = <&gic>;
+  interrupts = <34>;
+  status = "ok";
+ };
+ oneshot-timer@1c120000 {
+  compatible = "sp804,oneshot-timer";
+  reg = <0x1c120000 0x1000>;
+  interrupt-parent = <&gic>;
+  interrupts = <35>;
+  status = "ok";
+ };
+ clocksource-timer@1c110020 {
+  compatible = "sp804,clocksource-timer";
+  reg = <0x1c110020 0x1000>;
+  status = "ok";
+ };
+ mmc@1c050000 {
+  compatible = "vexpress,mmc-pl180";
+  reg = <0x1c050000 0x1000>;
+  power = <191>;
+  clkdiv = <454>;
+  caps = <0>;
+  voltages = <16744576>;
+  clock_min = <251256>;
+  clock_max = <6250000>;
+  b_max = <127>;
+  status = "ok";
+ };
+};

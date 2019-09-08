@@ -1,0 +1,23 @@
+
+menu "Platform"
+
+choice
+	prompt "SO3 OS type"
+
+config STANDALONE
+        bool "Standalone OS"
+        
+endchoice
+
+choice
+  prompt "Target"
+	
+       	depends on STANDALONE
+	config VEXPRESS
+    	bool "Vexpress"
+   
+endchoice
+
+source "arch/arm/vexpress/Kconfig"
+
+endmenu
