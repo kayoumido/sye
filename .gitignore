@@ -29,7 +29,7 @@
 
 # Eclipse stuff
 *.launch
-#.metadata
+.metadata
 
 # except the followings:
 !.gitignore #Don't ignore the ignore file ;-)
