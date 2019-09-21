@@ -66,6 +66,10 @@
 #define CR_AFE	(1 << 29)	/* Access flag enable			*/
 #define CR_TE	(1 << 30)	/* Thumb exception enable		*/
 
+#define CPACC_FULL(n)           (3 << (n * 2))
+#define CPACC_SVC(n)            (1 << (n * 2))
+#define CPACC_DISABLE(n)        (0 << (n * 2))
+
 /*
  * The stack frame which is built at the entry in the kernel currently looks like this:
  * { pc (lr_svc), lr, sp, spsr, r12, r11, ..., r0, lr_usr, sp_usr }
@@ -157,6 +161,8 @@
 #include <types.h>
 #include <compiler.h>
 #include <common.h>
+
+extern void __enable_vfp(void);
 
 #define FP_SIZE 35
 
@@ -268,9 +274,9 @@ static inline void local_irq_restore(uint32_t flags)
 }
 
 #define local_irq_is_enabled() \
-({ unsigned long flags; \
-  flags = local_save_flags(); \
-  !(flags & PSR_I_BIT); \
+	({ unsigned long flags; \
+	flags = local_save_flags(); \
+	!(flags & PSR_I_BIT); \
 })
 
 #define local_irq_is_disabled() \
@@ -306,13 +312,28 @@ static inline void set_cr(unsigned int val)
 
 
 static inline int smp_processor_id(void) {
-  int cpu;
+	int cpu;
 
-  /* Read Multiprocessor ID register */
-  asm volatile ("mrc p15, 0, %0, c0, c0, 5": "=r" (cpu));
+	/* Read Multiprocessor ID register */
+	asm volatile ("mrc p15, 0, %0, c0, c0, 5": "=r" (cpu));
 
-  /* Mask out all but CPU ID bits */
-  return (cpu & 0x3);
+	/* Mask out all but CPU ID bits */
+	return (cpu & 0x3);
+}
+
+static inline unsigned int get_copro_access(void)
+{
+	unsigned int val;
+	asm("mrc p15, 0, %0, c1, c0, 2 @ get copro access"
+			: "=r" (val) : : "cc");
+	return val;
+}
+
+static inline void set_copro_access(unsigned int val)
+{
+	asm volatile("mcr p15, 0, %0, c1, c0, 2 @ set copro access"
+			: : "r" (val) : "cc");
+	isb();
 }
 
 #endif /* __ASSEMBLY__ */

@@ -20,6 +20,7 @@
 
 #include <asm/mmu.h>
 
+.global __enable_vfp
 
 	/*
 	 * Memory region attributes with SCTLR.TRE=1
@@ -238,3 +239,8 @@ v7_crval:
 	crval	clear=0x0120c302, mmuset=0x10c03c7d, ucset=0x00c01c7c
 
 
+__enable_vfp:
+
+	mov r1, #0x40000000
+    fmxr fpexc, r1 ; fpexc = r1
+    bx lr

@@ -84,6 +84,25 @@ void setup_exception_stacks(void) {
 
 }
 
+/**
+ * Enabling VFP coprocessor.
+ * Currenty, we do not manage vfp context switch
+ */
+#warning vfp context switch to be implemented...
+void vfp_enable(void)
+{
+	u32 access;
+
+	access = get_copro_access();
+
+	/*
+	 * Enable full access to VFP (cp10 and cp11)
+	 */
+	set_copro_access(access | CPACC_FULL(10) | CPACC_FULL(11));
+
+	__enable_vfp();
+}
+
 /*
  * Low-level initialization before the main boostrap process.
  */
@@ -107,6 +126,7 @@ void setup_arch(void) {
 	/* Change the domain access controller to enable kernel protection against user access */
 	set_domain(0xfffffffd);
 #endif
+	vfp_enable();
 
 	/* A low-level UART should be initialized here so that subsystems initialization (like MMC) can already print out logs ... */
 
