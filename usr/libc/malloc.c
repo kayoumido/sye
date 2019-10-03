@@ -516,6 +516,9 @@ void *realloc(void *__ptr, size_t __size) {
 	void *alloc;
 	struct mem_chunk *chunk;
 
+	if (!__ptr)
+		return malloc(__size);
+
 	chunk = (struct mem_chunk *) (__ptr - sizeof(struct mem_chunk));
 
 	/* Check if the new zone is smaller than the original */
