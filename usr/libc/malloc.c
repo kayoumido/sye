@@ -477,6 +477,9 @@ void *memalign(size_t size, unsigned int alignment) {
  */
 void free(void *ptr)
 {
+	if (!ptr)
+		return;
+
 	mem_chunk_t *chunk = (mem_chunk_t *)((char *) ptr - sizeof(mem_chunk_t));
 	mem_chunk_t tmp_memchunk;
 
