@@ -1,7 +1,7 @@
  
 -include $(USR_DIR)/Makefile.common
 
-LIB = __ctype_get_mb_cur_max toupper
+LIB = __ctype_get_mb_cur_max toupper isspace
 
 all: $(patsubst %,%.o,$(LIB))
 
