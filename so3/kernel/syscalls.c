@@ -157,12 +157,9 @@ int syscall_handle(uint32_t r0, uint32_t r1, uint32_t r2, uint32_t r3, uint32_t 
 			result = do_nanosleep((const struct timespec *) r0, (struct timespec *) r1);
 			break;
 
-#ifdef CONFIG_PROC_ENV
 		case SYSCALL_SBRK:
 			result = do_sbrk((unsigned long) r0);
 			break;
-
-#endif /* CONFIG_PROC_ENV */
 
 	/* This is a first attempt of mutex syscall implementation.
 	 * Mainly used for debugging purposes (kernel mutex validation) at the moment ... */

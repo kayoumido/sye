@@ -271,9 +271,7 @@ void thread_exit(int *exit_status)
 		/* Make sure all tcb have disappeared */
 		remove_tcb_from_pcb(current());
 
-#ifdef CONFIG_PROC_ENV
 		do_exit(current()->exit_status);
-#endif
 
 	} else {
 

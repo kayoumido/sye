@@ -296,22 +296,16 @@ int vfs_open(struct file_operations *fops, uint32_t type)
 	/* Increment open fd reference counter */
 	vfs_inc_ref(gfd);
 
-#ifdef CONFIG_PROC_ENV
 	fd = proc_register_fd(gfd);
 
 	if (fd < 0)
 		goto fs_open_failed;
-#else
-	fd = gfd;
-#endif
 
 	mutex_unlock(&vfs_lock);
 
 	return fd;
 
-#ifdef CONFIG_PROC_ENV
 fs_open_failed:
-#endif
 
 	free(open_fds[gfd]);
 	open_fds[gfd] = NULL;
@@ -778,7 +772,6 @@ int do_dup2(int oldfd, int newfd)
  */
 int do_dup(int oldfd)
 {
-#ifdef CONFIG_PROC_ENV
 	int newfd;
 
 	if (oldfd < 0 || oldfd > MAX_FDS)
@@ -799,9 +792,6 @@ int do_dup(int oldfd)
 	mutex_unlock(&vfs_lock);
 
 	return newfd;
-#else
-	return 0;
-#endif
 }
 
 int do_stat(const char *path, struct stat *st)

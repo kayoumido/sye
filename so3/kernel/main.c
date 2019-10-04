@@ -66,23 +66,11 @@ int rest_init(void *dummy) {
 	/* Start the idle thread */
 	tcb_idle = kernel_thread(thread_idle, "idle", NULL);
 
-	/* Start a first SO3 thread (main app thread) */
-#if defined(CONFIG_THREAD_ENV) || defined(CONFIG_SO3VIRT)
-
-	kernel_thread(main_kernel, "main_kernel", NULL);
-
-	thread_exit(NULL);
-
-#elif defined(CONFIG_PROC_ENV)
-
 	/* Launch the root process (should be the shell...) */
 	create_process(root_proc, "root_proc");
 
 	/* We should never reach this ... */
 	BUG();
-#else
-#error "Can not start initial SO3 environment"
-#endif
 
 	return 0;
 }

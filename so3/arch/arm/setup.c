@@ -88,7 +88,6 @@ void setup_exception_stacks(void) {
  * Enabling VFP coprocessor.
  * Currenty, we do not manage vfp context switch
  */
-#warning vfp context switch to be implemented...
 void vfp_enable(void)
 {
 	u32 access;
