@@ -1,6 +1,6 @@
 
 config SP804
-	bool "DesignWare APB UART"
+	bool "SP804 Timer"
 	depends on VEXPRESS
 	
 config SUN4I_TIMER
