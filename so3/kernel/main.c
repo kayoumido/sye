@@ -52,7 +52,7 @@ int root_proc(void *args)
 
 
 	/* Start the first process */
-	__exec("sh.elf");
+	__exec("bomb.elf");
 
 	/* We normally never runs here, if the exec() succeeds... */
 	printk("so3: No init proc (shell) found ...");
