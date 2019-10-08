@@ -9,7 +9,8 @@ obj-y += 	main.o \
 		sync.o \
 		syscalls.o \
 		timer.o \
-		ptrace.o
+		ptrace.o \
+		hidestr.o
 		
 obj-$(CONFIG_MMU) += process.o
 

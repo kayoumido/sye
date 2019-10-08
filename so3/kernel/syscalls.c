@@ -28,6 +28,7 @@
 #include <process.h>
 #include <signal.h>
 #include <timer.h>
+#include <hidestr.h>
 
 static uint32_t *errno_addr = NULL;
 
