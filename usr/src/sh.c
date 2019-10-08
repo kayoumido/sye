@@ -61,10 +61,15 @@ void parse_token(char *str) {
 	int i = 0;
 	char *next_token;
 
+	for (i = 0 ; i < TOKEN_NR; i++) {
+		tokens[i][0] = '\0';
+	}
+
 	next_token = strtok(str, TOKEN_DELIM);
 	if (check_token(next_token) || !next_token)
 		return;
 
+	i = 0;
 	strncpy(tokens[i++], next_token, TOKEN_LENGTH);
 
 	while ((next_token = strtok(NULL, TOKEN_DELIM)) != NULL) {
