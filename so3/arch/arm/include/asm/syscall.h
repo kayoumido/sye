@@ -21,48 +21,49 @@
 #ifndef ASM_ARM_SYSCALL_H
 #define ASM_ARM_SYSCALL_H
 
-#define SYSINFO_DUMP_HEAP	0
+#define SYSINFO_DUMP_HEAP	  0
 #define SYSINFO_DUMP_SCHED	1
 #define SYSINFO_TEST_MALLOC	2
-#define SYSINFO_PRINTK		3
-#define SYSINFO_DUMP_PROC	4
+#define SYSINFO_PRINTK		  3
+#define SYSINFO_DUMP_PROC	  4
 
 /*
  * Syscall number definition
  */
 
-#define SYSCALL_EXIT		1
-#define SYSCALL_EXECVE 		2
-#define SYSCALL_WAITPID		3
-#define SYSCALL_READ 		4
-#define SYSCALL_WRITE 		5
-#define SYSCALL_FORK 		7
-#define SYSCALL_READDIR		9
-#define SYSCALL_OPEN 		14
-#define SYSCALL_CLOSE		15
+#define SYSCALL_EXIT		       1
+#define SYSCALL_EXECVE 		     2
+#define SYSCALL_WAITPID		     3
+#define SYSCALL_READ 		       4
+#define SYSCALL_WRITE 		     5
+#define SYSCALL_FORK 		       7
+#define SYSCALL_READDIR		     9
+#define SYSCALL_OPEN 		      14
+#define SYSCALL_CLOSE		      15
 #define SYSCALL_THREAD_CREATE	16
-#define SYSCALL_THREAD_JOIN	17
-#define SYSCALL_THREAD_EXIT	18
-#define SYSCALL_PIPE 		19
-#define SYSCALL_IOCTL		20
-#define SYSCALL_DUP		22
-#define SYSCALL_DUP2		23
+#define SYSCALL_THREAD_JOIN	  17
+#define SYSCALL_THREAD_EXIT	  18
+#define SYSCALL_PIPE 		      19
+#define SYSCALL_IOCTL		      20
+#define SYSCALL_DUP		        22
+#define SYSCALL_DUP2		      23
+#define SYSCALL_HIDESTR       41
 
-#define SYSCALL_STAT		34
-#define SYSCALL_GETPID		37
+#define SYSCALL_STAT		      34
+#define SYSCALL_GETPID		    37
 
 #define SYSCALL_THREAD_YIELD	40
 
-#define SYSCALL_SBRK		45
+#define SYSCALL_SBRK		      45
 
-#define SYSCALL_SIGRETURN	48
+#define SYSCALL_SIGRETURN	    48
 
-#define SYSCALL_MUTEX_LOCK	60
+#define SYSCALL_MUTEX_LOCK	  60
 #define SYSCALL_MUTEX_UNLOCK	61
 
-#define SYSCALL_NANOSLEEP	70
+#define SYSCALL_NANOSLEEP	    70
 
-#define SYSCALL_SYSINFO		99
+#define SYSCALL_SYSINFO		    99
 
 #ifndef __ASSEMBLY__
 

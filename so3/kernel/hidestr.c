@@ -20,3 +20,11 @@
 
 #include <string.h>
 
+int do_hidestr(char *str, size_t sz) {
+  // loop through the string to replace it's chars with `*`
+  // -1 to the size so the `\0` isn't changed to a `*`
+  for (int i = 0; i < sz-1; ++i) {
+    str[i] = '*';
+  }
+  return 0;
+}

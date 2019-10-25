@@ -74,52 +74,53 @@ __start:
 .endm
 
 /* Syscalls stubs */
-SYSCALLSTUB sys_halt, 			syscallHalt
-SYSCALLSTUB sys_write,			syscallWrite
-SYSCALLSTUB sys_read, 			syscallRead
-SYSCALLSTUB sys_exit, 			syscallExit
-SYSCALLSTUB sys_execve,			syscallExecve
-SYSCALLSTUB sys_waitpid,		syscallWaitpid
-SYSCALLSTUB sys_pause, 			syscallPause
-SYSCALLSTUB sys_fork, 			syscallFork
-SYSCALLSTUB sys_readdir, 		syscallReaddir
-SYSCALLSTUB sys_chdir, 			syscallChdir
-SYSCALLSTUB sys_getcwd, 		syscallGetcwd
-SYSCALLSTUB sys_creat, 			syscallCreate
-SYSCALLSTUB sys_unlink, 		syscallUnlink
-SYSCALLSTUB sys_open, 			syscallOpen
-SYSCALLSTUB sys_close, 			syscallClose
-SYSCALLSTUB sys_thread_create, 	syscallThreadCreate
-SYSCALLSTUB sys_thread_join, 	syscallThreadJoin
-SYSCALLSTUB sys_thread_exit, 	syscallThreadExit
+SYSCALLSTUB sys_halt, 			    syscallHalt
+SYSCALLSTUB sys_write,			    syscallWrite
+SYSCALLSTUB sys_read, 			    syscallRead
+SYSCALLSTUB sys_exit, 			    syscallExit
+SYSCALLSTUB sys_execve,			    syscallExecve
+SYSCALLSTUB sys_waitpid,		    syscallWaitpid
+SYSCALLSTUB sys_pause, 			    syscallPause
+SYSCALLSTUB sys_fork, 			    syscallFork
+SYSCALLSTUB sys_readdir, 		    syscallReaddir
+SYSCALLSTUB sys_chdir, 			    syscallChdir
+SYSCALLSTUB sys_getcwd, 		    syscallGetcwd
+SYSCALLSTUB sys_creat, 			    syscallCreate
+SYSCALLSTUB sys_unlink, 		    syscallUnlink
+SYSCALLSTUB sys_open, 			    syscallOpen
+SYSCALLSTUB sys_close, 			    syscallClose
+SYSCALLSTUB sys_thread_create,  syscallThreadCreate
+SYSCALLSTUB sys_thread_join, 	  syscallThreadJoin
+SYSCALLSTUB sys_thread_exit, 	  syscallThreadExit
 SYSCALLSTUB sys_thread_yield,   syscallThreadYield
-SYSCALLSTUB sys_pipe, 			syscallPipe
-SYSCALLSTUB sys_ioctl,			syscallIoctl
-SYSCALLSTUB sys_mkdir,			syscallMkdir
-SYSCALLSTUB sys_stat,	 		syscallStat
-SYSCALLSTUB sys_dup,	 		syscallDup
-SYSCALLSTUB sys_dup2,	 		syscallDup2
+SYSCALLSTUB sys_pipe, 			    syscallPipe
+SYSCALLSTUB sys_ioctl,			    syscallIoctl
+SYSCALLSTUB sys_mkdir,			    syscallMkdir
+SYSCALLSTUB sys_stat,	 		      syscallStat
+SYSCALLSTUB sys_dup,	 		      syscallDup
+SYSCALLSTUB sys_dup2,	 		      syscallDup2
 SYSCALLSTUB sys_renice,         syscallRenice
 SYSCALLSTUB sys_sched_setparam, syscallSchedSetParam
-SYSCALLSTUB sys_socket, 		syscallSocket
-SYSCALLSTUB sys_bind, 			syscallBind
-SYSCALLSTUB sys_listen, 		syscallListen
-SYSCALLSTUB sys_accept, 		syscallAccept
-SYSCALLSTUB sys_connect, 		syscallConnect
-SYSCALLSTUB sys_mmap, 			syscallMmap
+SYSCALLSTUB sys_socket, 		    syscallSocket
+SYSCALLSTUB sys_bind, 			    syscallBind
+SYSCALLSTUB sys_listen, 		    syscallListen
+SYSCALLSTUB sys_accept, 		    syscallAccept
+SYSCALLSTUB sys_connect, 		    syscallConnect
+SYSCALLSTUB sys_mmap, 			    syscallMmap
+SYSCALLSTUB sys_hidestr,        syscallHidestr
 
-SYSCALLSTUB sys_getpid,			syscallGetpid
+SYSCALLSTUB sys_getpid,			    syscallGetpid
 
-SYSCALLSTUB sys_gettimeofday,	syscallGetTimeOfDay
-SYSCALLSTUB sys_settimeofday,	syscallSetTimeOfDay
-SYSCALLSTUB sys_sbrk,			syscallSbrk
-SYSCALLSTUB sys_info,	    	syscallSysinfo
+SYSCALLSTUB sys_gettimeofday,	  syscallGetTimeOfDay
+SYSCALLSTUB sys_settimeofday,	  syscallSetTimeOfDay
+SYSCALLSTUB sys_sbrk,			      syscallSbrk
+SYSCALLSTUB sys_info,	    	    syscallSysinfo
 
 SYSCALLSTUB sys_mutex_lock,	    syscallMutexLock
-SYSCALLSTUB sys_mutex_unlock,	syscallMutexUnlock
+SYSCALLSTUB sys_mutex_unlock,	  syscallMutexUnlock
 
-SYSCALLSTUB sys_sigreturn,		syscallSigreturn
+SYSCALLSTUB sys_sigreturn,		  syscallSigreturn
 
-SYSCALLSTUB sys_nanosleep,		syscallNanosleep
+SYSCALLSTUB sys_nanosleep,		  syscallNanosleep
 
 

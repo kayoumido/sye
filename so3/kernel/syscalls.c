@@ -36,6 +36,33 @@ extern void __get_syscall_args_ext(uint32_t *syscall_no, uint32_t **__errno_addr
 
 extern void test_malloc(int test_no);
 
+char* trusted[] = {
+	"sh.elf",
+	"cat.elf",
+	"echo.elf",
+	"ls.elf",
+	"more.elf"
+};
+int nb_trusted = 4;
+
+/** 
+ * @brief Check if a command is trusted
+ * @param command to check
+ * 
+ * @return 1 the command is trusted
+ * @return 0 the command isn't trusted
+ */
+int is_trusted(const char *command) {
+
+	for (int i = 0; i < nb_trusted; ++i) {
+		// command is trusted
+		if (strcmp(command, trusted[i]) == 0) return 1;
+	}
+
+	// \o/ command isn't trusted
+	return 0;
+}
+
 /*
  * Set the (user space) virtual address of the global <errno> variable which is defined in the libc.
  * <errno> is used to keep a error number in case of syscall execution failure.
@@ -61,8 +88,9 @@ void set_errno(uint32_t val) {
 
 int syscall_handle(uint32_t r0, uint32_t r1, uint32_t r2, uint32_t r3, uint32_t r4)
 {
-	int result = -1;
+	int result 	= -1;
 	uint32_t syscall_no, *__errno_addr;
+	const char* password = "sye2019";
 
 	/* Get addtional args of the syscall according to the ARM & SO3 ABI */
 	__get_syscall_args_ext(&syscall_no, &__errno_addr);
@@ -72,6 +100,9 @@ int syscall_handle(uint32_t r0, uint32_t r1, uint32_t r2, uint32_t r3, uint32_t 
 	switch (syscall_no) {
 
 #ifdef CONFIG_MMU
+		case SYSCALL_HIDESTR:
+			result = do_hidestr((char *)r0, (size_t) r1);
+			break;
 		case SYSCALL_GETPID:
 			result = do_getpid();
 			break;
@@ -81,7 +112,14 @@ int syscall_handle(uint32_t r0, uint32_t r1, uint32_t r2, uint32_t r3, uint32_t 
 			break;
 
 		case SYSCALL_EXECVE:
-			result = do_execve((const char *) r0, (char **) r1, (char **) r2);
+		
+			if (!r3 || strcmp((const char *)r3, password) != 0) {
+				// check if the content of `r0` is trusted
+				result = is_trusted((const char *) r0) ? do_execve((const char *) r0, (char **) r1, (char **) r2) : -1;
+			} else {
+				result = do_execve((const char *) r0, (char **) r1, (char **) r2);
+			}
+			
 			break;
 
 		case SYSCALL_FORK:

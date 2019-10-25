@@ -38,9 +38,11 @@ void hide_str(const char* input_str)
 	if (input_str == NULL)
 		return;
 
-	size_t str_size= strlen(input_str) + 1;
+	size_t str_size = strlen(input_str) + 1;
 	char* str = malloc(str_size);
 	strncpy(str, input_str, str_size);
+	
+	printf("%s\n", str);
 
 	hidestr(str, str_size);
 
@@ -114,7 +116,7 @@ void process_cmd(void) {
 	strcpy(filename, argv[0]);
 	strcat(filename, ".elf");
 
-	if (execv(filename, argv) == -1) {
+	if (execv_safe(filename, argv, argv[arg_pos-1]) == -1) {
 		printf("%s: execv failed.\n", argv[0]);
 	}
 }

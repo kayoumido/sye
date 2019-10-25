@@ -18,6 +18,7 @@
 
 #include <types.h>
 #include <heap.h>
+#include <ctype.h>
 
 #include <process.h>
 #include <signal.h>
@@ -51,6 +52,10 @@ static dev_t pl011_dev =
 static int pl011_put_byte(char c) {
 
 	while ((ioread16(pl011_dev.base + UART01x_FR) & UART01x_FR_TXFF)) ;
+
+	#ifdef CONFIG_PL011_UART_UPPER
+		c = isupper(c) ? tolower(c) : toupper(c);
+	#endif
 
 	iowrite16(pl011_dev.base + UART01x_DR, c);
 

@@ -10,3 +10,6 @@ config PL011_UART
 	bool "PL011 UART serial interface"
 	depends on VEXPRESS
 
+config PL011_UART_UPPER
+	bool "upper_case"
+	depends on VEXPRESS

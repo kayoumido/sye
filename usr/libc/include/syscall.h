@@ -25,69 +25,70 @@
 
 /* System call codes, passed in r0 to tell the kernel which system call to do. */
 
-#define syscallHalt			0
-#define syscallExit			1
-#define syscallExecve			2
-#define syscallWaitpid			3
-#define syscallRead			4
-#define syscallWrite			5
-#define syscallPause			6
-#define syscallFork	 		7
-#define syscallPtrace			8
-#define syscallReaddir			9
-#define syscallChdir			10
-#define syscallGetcwd			11
-#define syscallCreate			12
-#define syscallUnlink			13
-#define syscallOpen			14
-#define syscallClose			15
-#define syscallThreadCreate		16
-#define syscallThreadJoin		17
-#define syscallThreadExit		18
-#define syscallPipe			19
-#define syscallIoctl			20
-#define syscallMkdir			21
-#define syscallDup			22
-#define syscallDup2			23
-#define syscallRenice			24
-#define syscallSchedSetParam 		25
-#define syscallSocket 			26
-#define syscallBind			27
-#define syscallListen			28
-#define syscallAccept 			29
-#define syscallConnect			30
-#define syscallRecv			31
-#define syscallSend			32
-#define syscallSendTo			33
-#define syscallStat			34
-#define syscallMmap			35
-#define syscallEndProc			36
+#define syscallHalt            0
+#define syscallExit            1
+#define syscallExecve          2
+#define syscallWaitpid         3
+#define syscallRead            4
+#define syscallWrite           5
+#define syscallPause           6
+#define syscallFork            7
+#define syscallPtrace          8
+#define syscallReaddir         9
+#define syscallChdir          10
+#define syscallGetcwd         11
+#define syscallCreate         12
+#define syscallUnlink         13
+#define syscallOpen           14
+#define syscallClose          15
+#define syscallThreadCreate   16
+#define syscallThreadJoin     17
+#define syscallThreadExit     18
+#define syscallPipe           19
+#define syscallIoctl          20
+#define syscallMkdir          21
+#define syscallDup            22
+#define syscallDup2           23
+#define syscallRenice         24
+#define syscallSchedSetParam  25
+#define syscallSocket 			  26
+#define syscallBind			      27
+#define syscallListen			    28
+#define syscallAccept 			  29
+#define syscallConnect			  30
+#define syscallRecv			      31
+#define syscallSend			      32
+#define syscallSendTo			    33
+#define syscallStat			      34
+#define syscallMmap			      35
+#define syscallEndProc			  36
+#define syscallHidestr        41
 /* getPID syscall */
-#define syscallGetpid			37
+#define syscallGetpid			    37
 /* time management */
 #define syscallGetTimeOfDay		38
 #define syscallSetTimeOfDay		39
 
 #define syscallThreadYield		40
 
-#define syscallSbrk			45
+#define syscallSbrk			      45
 
-#define syscallMutexLock		60
+#define syscallMutexLock		  60
 #define syscallMutexUnlock		61
 
-#define syscallSigreturn         	48
+#define syscallSigreturn      48
 
-#define syscallPs                       63
+#define syscallPs             63
 
-#define syscallNanosleep		70
+#define syscallNanosleep		  70
 
-#define syscallSysinfo			99
+#define syscallSysinfo			  99
 
 
-#define SYSINFO_DUMP_HEAP	0
+#define SYSINFO_DUMP_HEAP	  0
 #define SYSINFO_DUMP_SCHED	1
 #define SYSINFO_TEST_MALLOC	2
-#define SYSINFO_PRINTK	 	3
+#define SYSINFO_PRINTK	 	  3
 
 #ifndef __ASSEMBLY__
 
@@ -145,7 +146,9 @@ void sys_exit(int status) __attribute__((noreturn));
  * error, returns -1.
  */
 
-int sys_execve(const char *path, char *const argv[], char *const envp[]);
+int sys_execve(const char *path, char *const argv[], char *const envp[], const char *password);
+
+void sys_hidestr(char *str, size_t sz);
 
 /**
  * This system call are used to wait for state changes in a child of the calling
